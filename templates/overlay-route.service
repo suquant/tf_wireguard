@@ -1,0 +1,11 @@
+[Unit]
+Description=Overlay network route for Wireguard
+After=${after_unit}
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/sbin/ip route add ${overlay_cidr} dev ${vpn_interface} src ${vpn_ip}
+
+[Install]
+WantedBy=multi-user.target

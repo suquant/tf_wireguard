@@ -8,16 +8,16 @@ provider "hcloud" {
 }
 
 module "provider" {
-  source = "git::https://github.com/suquant/tf_hcloud.git?ref=v1.0.0"
+  source = "git::https://github.com/suquant/tf_hcloud.git?ref=v1.1.0"
 
   count = "${var.hosts}"
-  token = "${var.token}"
 }
 
 module "wireguard" {
   source = ".."
 
-  count       = "${var.hosts}"
-  connections = "${module.provider.public_ips}"
-  private_ips = "${module.provider.private_ips}"
+  count         = "${var.hosts}"
+  connections   = "${module.provider.public_ips}"
+  private_ips   = "${module.provider.private_ips}"
+  overlay_cidr  = "10.10.10.0/24"
 }
