@@ -52,12 +52,7 @@ resource "null_resource" "wireguard" {
   }
 
   provisioner "remote-exec" {
-    inline = [
-      "DEBIAN_FRONTEND=noninteractive apt install -yq apt-transport-https ca-certificates software-properties-common",
-      "add-apt-repository -y ppa:wireguard/wireguard",
-      "apt update",
-      "DEBIAN_FRONTEND=noninteractive apt install -y wireguard linux-headers-$(uname -r) linux-headers-virtual"
-    ]
+    script = "${path.module}/scripts/install.sh"
   }
 
   provisioner "file" {

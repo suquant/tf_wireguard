@@ -8,9 +8,11 @@ provider "hcloud" {
 }
 
 module "provider" {
-  source = "git::https://github.com/suquant/tf_hcloud.git?ref=v1.1.0"
+  source = "git::https://github.com/suquant/tf_hcloud.git"
 
   count = "${var.hosts}"
+
+  image = "debian-9"
 }
 
 module "wireguard" {
