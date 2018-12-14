@@ -16,7 +16,7 @@ module "provider" {
 }
 
 module "wireguard" {
-  source = ".."
+  source = "../.."
 
   count         = "${var.hosts}"
   connections   = "${module.provider.public_ips}"
